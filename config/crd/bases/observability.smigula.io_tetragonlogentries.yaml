@@ -1,0 +1,260 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.15.0
+  name: tetragonlogentries.observability.smigula.io
+spec:
+  group: observability.smigula.io
+  names:
+    kind: TetragonLogEntry
+    listKind: TetragonLogEntryList
+    plural: tetragonlogentries
+    singular: tetragonlogentry
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: TetragonLogEntry is the Schema for the tetragonlogentries API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: TetragonLogEntrySpec defines the desired state of TetragonLogEntry
+            properties:
+              node_name:
+                type: string
+              process_exit:
+                description: ProcessExit encapsulates information about the process
+                  exit event.
+                properties:
+                  parent:
+                    description: Process contains detailed information about a process.
+                    properties:
+                      arguments:
+                        type: string
+                      auid:
+                        format: int32
+                        type: integer
+                      binary:
+                        type: string
+                      cwd:
+                        type: string
+                      docker:
+                        type: string
+                      exec_id:
+                        type: string
+                      flags:
+                        type: string
+                      parent_exec_id:
+                        type: string
+                      pid:
+                        type: integer
+                      pod:
+                        description: Pod contains information about the Kubernetes
+                          pod.
+                        properties:
+                          container:
+                            description: Container holds details about the container
+                              within the pod.
+                            properties:
+                              id:
+                                type: string
+                              image:
+                                description: Image represents the container image
+                                  information.
+                                properties:
+                                  id:
+                                    type: string
+                                  name:
+                                    type: string
+                                required:
+                                - id
+                                - name
+                                type: object
+                              name:
+                                type: string
+                              pid:
+                                type: integer
+                              start_time:
+                                type: string
+                            required:
+                            - id
+                            - name
+                            - pid
+                            type: object
+                          name:
+                            type: string
+                          namespace:
+                            type: string
+                          pod_labels:
+                            additionalProperties:
+                              type: string
+                            type: object
+                          workload:
+                            type: string
+                          workload_kind:
+                            type: string
+                        required:
+                        - name
+                        - namespace
+                        - pod_labels
+                        - workload
+                        - workload_kind
+                        type: object
+                      start_time:
+                        type: string
+                      tid:
+                        type: integer
+                      uid:
+                        type: integer
+                    required:
+                    - arguments
+                    - auid
+                    - binary
+                    - cwd
+                    - docker
+                    - exec_id
+                    - flags
+                    - parent_exec_id
+                    - pid
+                    - tid
+                    - uid
+                    type: object
+                  process:
+                    description: Process contains detailed information about a process.
+                    properties:
+                      arguments:
+                        type: string
+                      auid:
+                        format: int32
+                        type: integer
+                      binary:
+                        type: string
+                      cwd:
+                        type: string
+                      docker:
+                        type: string
+                      exec_id:
+                        type: string
+                      flags:
+                        type: string
+                      parent_exec_id:
+                        type: string
+                      pid:
+                        type: integer
+                      pod:
+                        description: Pod contains information about the Kubernetes
+                          pod.
+                        properties:
+                          container:
+                            description: Container holds details about the container
+                              within the pod.
+                            properties:
+                              id:
+                                type: string
+                              image:
+                                description: Image represents the container image
+                                  information.
+                                properties:
+                                  id:
+                                    type: string
+                                  name:
+                                    type: string
+                                required:
+                                - id
+                                - name
+                                type: object
+                              name:
+                                type: string
+                              pid:
+                                type: integer
+                              start_time:
+                                type: string
+                            required:
+                            - id
+                            - name
+                            - pid
+                            type: object
+                          name:
+                            type: string
+                          namespace:
+                            type: string
+                          pod_labels:
+                            additionalProperties:
+                              type: string
+                            type: object
+                          workload:
+                            type: string
+                          workload_kind:
+                            type: string
+                        required:
+                        - name
+                        - namespace
+                        - pod_labels
+                        - workload
+                        - workload_kind
+                        type: object
+                      start_time:
+                        type: string
+                      tid:
+                        type: integer
+                      uid:
+                        type: integer
+                    required:
+                    - arguments
+                    - auid
+                    - binary
+                    - cwd
+                    - docker
+                    - exec_id
+                    - flags
+                    - parent_exec_id
+                    - pid
+                    - tid
+                    - uid
+                    type: object
+                  time:
+                    type: string
+                required:
+                - time
+                type: object
+              time:
+                type: string
+            required:
+            - node_name
+            - time
+            type: object
+          status:
+            description: TetragonLogEntryStatus defines the observed state of TetragonLogEntry
+            properties:
+              enhanced:
+                type: boolean
+              forwarded:
+                type: boolean
+            required:
+            - enhanced
+            - forwarded
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

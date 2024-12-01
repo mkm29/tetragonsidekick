@@ -1,0 +1,9 @@
+apiVersion: observability.smigula.io/v1alpha1
+kind: TetragonLogEntry
+metadata:
+  labels:
+    app.kubernetes.io/name: tetragonsidekick
+    app.kubernetes.io/managed-by: kustomize
+  name: tetragonlogentry-sample
+spec:
+  # TODO(user): Add fields here

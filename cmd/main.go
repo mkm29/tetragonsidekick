@@ -49,6 +49,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	// Print pods
-	log.Printf("pods: %v", pods)
+	for _, pod := range pods.Items {
+		// get Pod metadata
+		log.Printf("pod: %v", pod.ObjectMeta)
+	}
 }

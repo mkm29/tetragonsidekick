@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetragonsidekick
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tetragonsidekick
+  template:
+    metadata:
+      labels:
+        app: tetragonsidekick
+    spec:
+      serviceAccountName: pod-watcher-sa
+      containers:
+        - name: sidekick
+          image: smigula/tetragonsidekick:0.0.7
